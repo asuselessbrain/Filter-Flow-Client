@@ -1,16 +1,39 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/Logo.png";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const SignUp = () => {
-  const handleSignUp = (e) => {
+
+  const image_hosting_api_key = import.meta.env.VITE_image_hosting_key;
+
+  const imagebb_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_api_key}`
+  
+  const handleSignUp = async(e) => {
     e.preventDefault();
 
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
-    const imageFile = form.image.files[0];
+    const imageFile = {image: form?.image.files[0]};
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+
+    try{
+      const res = await axios.post(imagebb_hosting_url, imageFile,{
+        headers: {
+          "content-type": "multipart/form-data",
+        }
+      })
+      console.log(res.data.data.display_url)
+
+      if(res.data.success){
+        // signup
+      }
+    }
+    catch(err){
+      toast.error(err.message)
+    }
 
     const userInfo = {
       name,
