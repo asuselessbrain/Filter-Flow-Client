@@ -2,37 +2,53 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/Logo.png";
 import { toast } from "react-toastify";
 import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
+  const { googleSignUp, signUpWithEmail, updateUserProfile } = useAuth();
 
   const image_hosting_api_key = import.meta.env.VITE_image_hosting_key;
 
-  const imagebb_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_api_key}`
-  
-  const handleSignUp = async(e) => {
+  const imagebb_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_api_key}`;
+
+  const handleGoogleSignIn = async () => {
+    const res = await googleSignUp();
+    if (res.user) {
+      toast.success("Login Successful!");
+    }
+  };
+
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
-    const imageFile = {image: form?.image.files[0]};
+    const imageFile = { image: form?.image.files[0] };
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
 
-    try{
-      const res = await axios.post(imagebb_hosting_url, imageFile,{
+    try {
+      const res = await axios.post(imagebb_hosting_url, imageFile, {
         headers: {
           "content-type": "multipart/form-data",
-        }
-      })
-      console.log(res.data.data.display_url)
+        },
+      });
+      const image = res.data.data.display_url;
 
-      if(res.data.success){
-        // signup
+      if (res.data.success) {
+        try {
+          const signUpRes = await signUpWithEmail(email, password);
+          console.log(signUpRes.user)
+          if (signUpRes.user) {
+            await updateUserProfile(name, image);
+          }
+        } catch (err) {
+          toast.error(err.message)
+        }
       }
-    }
-    catch(err){
-      toast.error(err.message)
+    } catch (err) {
+      toast.error(err.message);
     }
 
     const userInfo = {
@@ -42,7 +58,6 @@ const SignUp = () => {
       password,
       confirmPassword,
     };
-    console.log(userInfo);
   };
   return (
     <section className="bg-gray-100 dark:bg-gray-900">
@@ -56,7 +71,10 @@ const SignUp = () => {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <div className="flex flex-col items-center">
-              <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+              <button
+                onClick={handleGoogleSignIn}
+                className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+              >
                 <div className="bg-white p-2 rounded-full">
                   <svg className="w-4" viewBox="0 0 533.5 544.3">
                     <path
