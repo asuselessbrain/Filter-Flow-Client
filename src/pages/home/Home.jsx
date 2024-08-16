@@ -12,6 +12,7 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
+  // const [sortByDate, setSortByDate] = useState("");
 
   const { data: products = [] } = useQuery({
     queryKey: ["products", currentPage, productPerPage, filter, sort],
@@ -38,6 +39,11 @@ const Home = () => {
 
   const handleCurrentPage = (value) => {
     setCurrentPage(value);
+  };
+
+  const handleReset = () => {
+    setSort("");
+    setFilter("");
   };
 
   return (
@@ -69,17 +75,35 @@ const Home = () => {
       </div>
       <div>
         <select
-        onChange={(e) => {
-          setSort(e.target.value);
-          setCurrentPage(1);
-        }}
-        value={sort}
-        name="sort" id="sort" className="border p-4 rounded-md">
+          onChange={(e) => {
+            setSort(e.target.value);
+            setCurrentPage(1);
+          }}
+          value={sort}
+          name="sort"
+          id="sort"
+          className="border p-4 rounded-md"
+        >
           <option value="">Sort By Price</option>
           <option value="asc">Low to High</option>
           <option value="dsc">High to Low</option>
         </select>
       </div>
+      {/* <div>
+        <select
+        onChange={(e) => {
+          setSortByDate(e.target.value);
+          setCurrentPage(1);
+        }}
+        value={sortByDate}
+        name="sortByDate" id="sortByDate" className="border p-4 rounded-md">
+          <option value="">Sort By Deadline</option>
+          <option value="dsc">Newest First</option>
+          <option value="asc">Oldest First</option>
+        </select>
+      </div> */}
+
+      <button onClick={handleReset} className="btn">Reset</button>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
           <Card key={product._id} product={product} />
