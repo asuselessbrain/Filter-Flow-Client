@@ -1,0 +1,403 @@
+[
+    {
+      "productId": "P001",
+      "productName": "Wireless Earbuds",
+      "productImage": "https://ibb.co/B4pgywQ",
+      "description": "High-quality wireless earbuds with noise cancellation.",
+      "price": 49.99,
+      "category": "Electronics",
+      "ratings": 4.5,
+      "createdAt": "2024-08-16T09:30:00Z"
+    },
+    {
+      "productId": "P002",
+      "productName": "Smartphone XR",
+      "productImage": "https://ibb.co/6WxFWj8",
+      "description": "Latest smartphone with a high-resolution display and advanced camera.",
+      "price": 799.99,
+      "category": "Electronics",
+      "ratings": 4.8,
+      "createdAt": "2024-08-15T14:45:00Z"
+    },
+    {
+      "productId": "P003",
+      "productName": "Running Shoes",
+      "productImage": "https://ibb.co/wBZgBkm",
+      "description": "Lightweight running shoes with breathable material.",
+      "price": 59.99,
+      "category": "Footwear",
+      "ratings": 4.3,
+      "createdAt": "2024-08-14T18:00:00Z"
+    },
+    {
+      "productId": "P004",
+      "productName": "4K Ultra HD TV",
+      "productImage": "https://ibb.co/Hxqnf6H",
+      "description": "55-inch 4K Ultra HD TV with HDR support.",
+      "price": 599.99,
+      "category": "Electronics",
+      "ratings": 4.7,
+      "createdAt": "2024-08-13T11:15:00Z"
+    },
+    {
+      "productId": "P005",
+      "productName": "Gaming Laptop",
+      "productImage": "https://ibb.co/vdT7tN4",
+      "description": "High-performance gaming laptop with the latest graphics card.",
+      "price": 1199.99,
+      "category": "Electronics",
+      "ratings": 4.6,
+      "createdAt": "2024-08-12T16:20:00Z"
+    },
+    {
+      "productId": "P006",
+      "productName": "Bluetooth Speaker",
+      "productImage": "https://ibb.co/qLHs7ZR",
+      "description": "Portable Bluetooth speaker with deep bass and long battery life.",
+      "price": 39.99,
+      "category": "Electronics",
+      "ratings": 4.4,
+      "createdAt": "2024-08-11T09:10:00Z"
+    },
+    {
+      "productId": "P007",
+      "productName": "Smartwatch Pro",
+      "productImage": "https://ibb.co/Xtyzq7n",
+      "description": "Advanced smartwatch with fitness tracking and heart rate monitor.",
+      "price": 249.99,
+      "category": "Wearables",
+      "ratings": 4.5,
+      "createdAt": "2024-08-10T13:30:00Z"
+    },
+    {
+      "productId": "P008",
+      "productName": "Digital Camera",
+      "productImage": "https://ibb.co/wcHKNMr",
+      "description": "High-resolution digital camera with 4K video recording.",
+      "price": 499.99,
+      "category": "Electronics",
+      "ratings": 4.6,
+      "createdAt": "2024-08-09T15:25:00Z"
+    },
+    {
+      "productId": "P009",
+      "productName": "Electric Kettle",
+      "productImage": "https://ibb.co/yPZ7PpF",
+      "description": "Stainless steel electric kettle with auto shut-off feature.",
+      "price": 29.99,
+      "category": "Home Appliances",
+      "ratings": 4.3,
+      "createdAt": "2024-08-08T08:45:00Z"
+    },
+    {
+      "productId": "P010",
+      "productName": "Yoga Mat",
+      "productImage": "https://ibb.co/vJFYtRp",
+      "description": "Non-slip yoga mat with extra cushioning for comfort.",
+      "price": 24.99,
+      "category": "Fitness",
+      "ratings": 4.7,
+      "createdAt": "2024-08-07T17:00:00Z"
+    },
+    {
+      "productId": "P011",
+      "productName": "Leather Wallet",
+      "productImage": "https://ibb.co/dWPxwSB",
+      "description": "Premium leather wallet with multiple card slots.",
+      "price": 19.99,
+      "category": "Accessories",
+      "ratings": 4.2,
+      "createdAt": "2024-08-06T12:10:00Z"
+    },
+    {
+      "productId": "P012",
+      "productName": "Coffee Maker",
+      "productImage": "https://ibb.co/1rvpxsg",
+      "description": "Automatic coffee maker with programmable settings.",
+      "price": 79.99,
+      "category": "Home Appliances",
+      "ratings": 4.4,
+      "createdAt": "2024-08-05T10:30:00Z"
+    },
+    {
+      "productId": "P013",
+      "productName": "Mountain Bike",
+      "productImage": "https://ibb.co/w0FLbn9",
+      "description": "Durable mountain bike with 21-speed gear system.",
+      "price": 299.99,
+      "category": "Outdoor",
+      "ratings": 4.5,
+      "createdAt": "2024-08-04T19:50:00Z"
+    },
+    {
+      "productId": "P014",
+      "productName": "Noise-Cancelling Headphones",
+      "productImage": "https://ibb.co/kyNrGf7",
+      "description": "Over-ear headphones with active noise cancellation.",
+      "price": 199.99,
+      "category": "Electronics",
+      "ratings": 4.8,
+      "createdAt": "2024-08-03T07:15:00Z"
+    },
+    {
+      "productId": "P015",
+      "productName": "Smart LED Bulbs",
+      "productImage": "https://ibb.co/t4D6qcx",
+      "description": "Color-changing LED bulbs controllable via smartphone app.",
+      "price": 34.99,
+      "category": "Home Automation",
+      "ratings": 4.4,
+      "createdAt": "2024-08-02T11:25:00Z"
+    },
+    {
+      "productId": "P016",
+      "productName": "Wireless Charger",
+      "productImage": "https://ibb.co/x7v7rQb",
+      "description": "Fast wireless charger compatible with most smartphones.",
+      "price": 29.99,
+      "category": "Electronics",
+      "ratings": 4.3,
+      "createdAt": "2024-08-01T14:35:00Z"
+    },
+    {
+      "productId": "P017",
+      "productName": "Blender Pro",
+      "productImage": "https://ibb.co/68LXX79",
+      "description": "High-speed blender with multiple settings and large capacity.",
+      "price": 89.99,
+      "category": "Kitchen Appliances",
+      "ratings": 4.5,
+      "createdAt": "2024-07-31T16:40:00Z"
+    },
+    {
+      "productId": "P018",
+      "productName": "Fitness Tracker",
+      "productImage": "https://ibb.co/Ph4ndwT",
+      "description": "Waterproof fitness tracker with heart rate monitor and GPS.",
+      "price": 99.99,
+      "category": "Wearables",
+      "ratings": 4.7,
+      "createdAt": "2024-07-30T09:20:00Z"
+    },
+    {
+      "productId": "P019",
+      "productName": "Air Fryer",
+      "productImage": "https://ibb.co/ZWJr8qG",
+      "description": "Healthy cooking air fryer with digital controls.",
+      "price": 129.99,
+      "category": "Kitchen Appliances",
+      "ratings": 4.6,
+      "createdAt": "2024-07-29T18:05:00Z"
+    },
+    {
+      "productId": "P020",
+      "productName": "Portable Projector",
+      "productImage": "https://ibb.co/88j4Y5b",
+      "description": "Compact projector with HD resolution for home entertainment.",
+      "price": 149.99,
+      "category": "Electronics",
+      "ratings": 4.4,
+      "createdAt": "2024-07-28T20:10:00Z"
+    },
+    {
+      "productId": "P021",
+      "productName": "Electric Toothbrush",
+      "productImage": "https://ibb.co/SQxQwy1",
+      "description": "Rechargeable electric toothbrush with multiple brushing modes.",
+      "price": 39.99,
+      "category": "Personal Care",
+      "ratings": 4.5,
+      "createdAt": "2024-07-27T10:00:00Z"
+    },
+    {
+      "productId": "P022",
+      "productName": "Smart Thermostat",
+      "productImage": "https://ibb.co/5xBtbHR",
+      "description": "Energy-saving smart thermostat with remote control.",
+      "price": 179.99,
+      "category": "Home Automation",
+      "ratings": 4.6,
+      "createdAt": "2024-07-26T12:15:00Z"
+    },
+    {
+      "productId": "P023",
+      "productName": "Laptop Stand",
+      "productImage": "https://ibb.co/PxntJ35",
+      "description": "Adjustable laptop stand for comfortable working posture.",
+      "price": 24.99,
+      "category": "Accessories",
+      "ratings": 4.3,
+      "createdAt": "2024-07-25T15:30:00Z"
+    },
+    {
+      "productId": "P024",
+      "productName": "Portable Blender",
+      "productImage": "https://ibb.co/sRVVHYF",
+      "description": "USB rechargeable portable blender for smoothies and shakes.",
+      "price": 49.99,
+      "category": "Kitchen Appliances",
+      "ratings": 4.4,
+      "createdAt": "2024-07-24T08:50:00Z"
+    },
+    {
+      "productId": "P025",
+      "productName": "Smart Doorbell",
+      "productImage": "https://ibb.co/3CRDZRL",
+      "description": "Wi-Fi connected smart doorbell with video camera and intercom.",
+      "price": 99.99,
+      "category": "Home Automation",
+      "ratings": 4.6,
+      "createdAt": "2024-07-23T17:10:00Z"
+    },
+    {
+      "productId": "P026",
+      "productName": "Wireless Mouse",
+      "productImage": "https://ibb.co/4tc8qSP",
+      "description": "Ergonomic wireless mouse with adjustable DPI settings.",
+      "price": 19.99,
+      "category": "Accessories",
+      "ratings": 4.2,
+      "createdAt": "2024-07-22T11:20:00Z"
+    },
+    {
+      "productId": "P027",
+      "productName": "Noise Machine",
+      "productImage": "https://ibb.co/cgfD3bb",
+      "description": "White noise machine with soothing sounds for better sleep.",
+      "price": 34.99,
+      "category": "Personal Care",
+      "ratings": 4.5,
+      "createdAt": "2024-07-21T13:40:00Z"
+    },
+    {
+      "productId": "P028",
+      "productName": "Cordless Vacuum Cleaner",
+      "productImage": "https://ibb.co/jzyvbmW",
+      "description": "Lightweight cordless vacuum cleaner with powerful suction.",
+      "price": 179.99,
+      "category": "Home Appliances",
+      "ratings": 4.6,
+      "createdAt": "2024-07-20T16:55:00Z"
+    },
+    {
+      "productId": "P029",
+      "productName": "Gaming Chair",
+      "productImage": "https://ibb.co/gTQj9zY",
+      "description": "Comfortable gaming chair with lumbar support and adjustable height.",
+      "price": 199.99,
+      "category": "Furniture",
+      "ratings": 4.7,
+      "createdAt": "2024-07-19T18:00:00Z"
+    },
+    {
+      "productId": "P030",
+      "productName": "Wireless Keyboard",
+      "productImage": "https://ibb.co/5WZZbVL",
+      "description": "Compact wireless keyboard with long battery life.",
+      "price": 49.99,
+      "category": "Accessories",
+      "ratings": 4.3,
+      "createdAt": "2024-07-18T09:25:00Z"
+    },
+    {
+      "productId": "P031",
+      "productName": "Smart Water Bottle",
+      "productImage": "https://ibb.co/CPJTVWQ",
+      "description": "Smart water bottle that tracks hydration and reminds you to drink.",
+      "price": 59.99,
+      "category": "Fitness",
+      "ratings": 4.5,
+      "createdAt": "2024-07-17T12:30:00Z"
+    },
+    {
+      "productId": "P032",
+      "productName": "Electric Grill",
+      "productImage": "https://ibb.co/0yfCQFW",
+      "description": "Smokeless indoor electric grill with temperature control.",
+      "price": 89.99,
+      "category": "Kitchen Appliances",
+      "ratings": 4.6,
+      "createdAt": "2024-07-16T18:45:00Z"
+    },
+    {
+      "productId": "P033",
+      "productName": "Smart Light Switch",
+      "productImage": "https://ibb.co/kQSY1mw",
+      "description": "Voice-controlled smart light switch compatible with Alexa and Google Assistant.",
+      "price": 39.99,
+      "category": "Home Automation",
+      "ratings": 4.4,
+      "createdAt": "2024-07-15T20:55:00Z"
+    },
+    {
+      "productId": "P034",
+      "productName": "Fitness Dumbbells Set",
+      "productImage": "https://ibb.co/LtHBHhq",
+      "description": "Adjustable dumbbells set for home workout.",
+      "price": 69.99,
+      "category": "Fitness",
+      "ratings": 4.5,
+      "createdAt": "2024-07-14T08:00:00Z"
+    },
+    {
+      "productId": "P035",
+      "productName": "Electric Pressure Cooker",
+      "productImage": "https://ibb.co/THbJGVV",
+      "description": "Multi-function electric pressure cooker with pre-set cooking programs.",
+      "price": 119.99,
+      "category": "Kitchen Appliances",
+      "ratings": 4.7,
+      "createdAt": "2024-07-13T10:10:00Z"
+    },
+    {
+      "productId": "P036",
+      "productName": "Smart Security Camera",
+      "productImage": "https://ibb.co/k4qnVBb",
+      "description": "HD smart security camera with motion detection and night vision.",
+      "price": 99.99,
+      "category": "Home Automation",
+      "ratings": 4.6,
+      "createdAt": "2024-07-12T14:20:00Z"
+    },
+    {
+      "productId": "P037",
+      "productName": "Electric Scooter",
+      "productImage": "https://ibb.co/X2779tV",
+      "description": "Foldable electric scooter with long-range battery and LED lights.",
+      "price": 299.99,
+      "category": "Outdoor",
+      "ratings": 4.5,
+      "createdAt": "2024-07-11T17:35:00Z"
+    },
+    {
+      "productId": "P038",
+      "productName": "Wireless Security System",
+      "productImage": "https://ibb.co/1n6jNnM",
+      "description": "Complete wireless security system with multiple cameras and mobile app.",
+      "price": 399.99,
+      "category": "Home Automation",
+      "ratings": 4.7,
+      "createdAt": "2024-07-10T19:45:00Z"
+    },
+    {
+      "productId": "P039",
+      "productName": "Portable Air Conditioner",
+      "productImage": "https://ibb.co/mbr3Z0w",
+      "description": "Portable air conditioner with remote control and energy-saving mode.",
+      "price": 249.99,
+      "category": "Home Appliances",
+      "ratings": 4.6,
+      "createdAt": "2024-07-09T09:00:00Z"
+    },
+    {
+      "productId": "P040",
+      "productName": "Smart Mirror",
+      "productImage": "https://ibb.co/NnRDBth",
+      "description": "Smart mirror with built-in display for fitness and weather updates.",
+      "price": 199.99,
+      "category": "Home Automation",
+      "ratings": 4.5,
+      "createdAt": "2024-07-08T11:10:00Z"
+    }
+  ]
+  
