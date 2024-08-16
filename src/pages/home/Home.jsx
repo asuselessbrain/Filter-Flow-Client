@@ -4,6 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Card from "../../components/Card";
 import Searchbar from "../../components/Searchbar";
+import Navbar from "../../components/Navbar";
+import Spinner from "../../components/Spinner/Spinner";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   const { user, logOut } = useAuth();
@@ -17,7 +20,7 @@ const Home = () => {
   const [sortByDate, setSortByDate] = useState("");
   const [minPrice, setMinPrice] = useState(""); // Added state for minimum price
   const [maxPrice, setMaxPrice] = useState("");
-  const [brand, setBrand] = useState(""); 
+  const [brand, setBrand] = useState("");
 
   const { data: products = [] } = useQuery({
     queryKey: [
@@ -63,9 +66,9 @@ const Home = () => {
     setSearch("");
     setSearchText("");
     setSortByDate("");
-    setMinPrice(""); 
-    setMaxPrice(""); 
-    setBrand("")
+    setMinPrice("");
+    setMaxPrice("");
+    setBrand("");
   };
 
   const handleSearch = (e) => {
@@ -73,9 +76,12 @@ const Home = () => {
     setSearch(searchText);
   };
 
+  if (products.length === 0) return <Spinner />;
+
   return (
     <div className="max-w-[1440px] mx-auto">
-      
+      <Navbar />
+
       <div className="flex justify-between overflow-x-auto gap-6 items-center m-3">
         <div className="flex-1">
           <select
@@ -102,22 +108,22 @@ const Home = () => {
           </select>
         </div>
         <div className="flex-1">
-        <select
-          onChange={(e) => {
-            setBrand(e.target.value);
-            setCurrentPage(1);
-          }}
-          value={brand}
-          name="brand"
-          id="brand"
-          className="border p-4 rounded-md"
-        >
-          <option value="">Filter By Brand</option>
-          <option value="Brand A">Brand A</option>
-          <option value="Brand B">Brand B</option>
-          <option value="Brand C">Brand C</option>
-        </select>
-      </div>
+          <select
+            onChange={(e) => {
+              setBrand(e.target.value);
+              setCurrentPage(1);
+            }}
+            value={brand}
+            name="brand"
+            id="brand"
+            className="border p-4 rounded-md"
+          >
+            <option value="">Filter By Brand</option>
+            <option value="Brand A">Brand A</option>
+            <option value="Brand B">Brand B</option>
+            <option value="Brand C">Brand C</option>
+          </select>
+        </div>
         <div className="flex-1">
           <select
             onChange={(e) => {
@@ -175,7 +181,10 @@ const Home = () => {
           />
         </div>
 
-        <button onClick={handleReset} className="btn bg-pink-600 hover:bg-pink-700 text-white flex-1">
+        <button
+          onClick={handleReset}
+          className="btn bg-pink-600 hover:bg-pink-700 text-white flex-1"
+        >
           Reset
         </button>
       </div>
@@ -252,6 +261,7 @@ const Home = () => {
           </div>
         </button>
       </div>
+      <Footer />
     </div>
   );
 };

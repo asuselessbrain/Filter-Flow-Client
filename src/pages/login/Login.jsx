@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/Logo.png";
 import SocialMediaLogin from "../../components/SocialMediaLogin";
 import useAuth from "../../hooks/useAuth";
@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 const Login = () => {
 
   const { signInWithEmail } = useAuth();
+  const navigate = useNavigate()
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSignIn = async(e) => {
 
@@ -16,8 +19,10 @@ const Login = () => {
     const password = form.password.value;
 
     try{
-        const res = signInWithEmail(email, password)
-        console.log(res)
+        signInWithEmail(email, password)
+        toast.success("Login  Successful!")
+        navigate(from, { replace: true });
+        
     }
     catch(err){
         toast.error(err.message)

@@ -1,5 +1,4 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 
@@ -7,11 +6,13 @@ const SocialMediaLogin = () => {
   const { googleSignUp } = useAuth();
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const handleGoogleSignIn = async () => {
-    const res = await googleSignUp();
-    if (res.user) {
-      toast.success("Login Successful!");
-    }
+    await googleSignUp();
+    navigate(from, { replace: true });
+    toast.success("Login Successful!");
   };
 
   return (
