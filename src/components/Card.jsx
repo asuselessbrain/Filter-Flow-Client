@@ -1,3 +1,5 @@
+import { TbCurrencyTaka } from "react-icons/tb";
+
 const Card = ({ product }) => {
   const {
     productName,
@@ -5,12 +7,16 @@ const Card = ({ product }) => {
     description,
     price,
     category,
-    rating,
+    ratings,
     createdAt,
   } = product;
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-3">
-      <img className="rounded-t-lg h-[250px] mx-auto" src={productImage} alt="" />
+      <img
+        className="rounded-t-lg h-[250px] mx-auto"
+        src={productImage}
+        alt=""
+      />
       <div className="p-5">
         <a href="#">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -20,9 +26,29 @@ const Card = ({ product }) => {
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           {description}
         </p>
-        <p className="mb-3 font-semibold text-gray-700 dark:text-gray-400">
-          Price: {price} 
+        <p className="mb-3 font-semibold flex items-center gap-1 text-gray-700 dark:text-gray-400">
+          Price:{" "}
+          <span className="flex items-center gap-1 text-red-600">
+            {price} <TbCurrencyTaka />
+          </span>
         </p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <span className="font-semibold">Category: </span> {category}
+        </p>
+
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <span className="font-semibold">Rating: </span> {ratings}
+        </p>
+
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <span className="font-semibold">Product Created Date: </span>{" "}
+          {new Date(createdAt).toLocaleDateString()}
+        </p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <span className="font-semibold">Product Created Time: </span>{" "}
+          {new Date(createdAt).toLocaleTimeString()}
+        </p>
+
         <a
           href="#"
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

@@ -76,8 +76,6 @@ const Home = () => {
     setSearch(searchText);
   };
 
-  if (products.length === 0) return <Spinner />;
-
   return (
     <div className="max-w-[1440px] mx-auto">
       <Navbar />
