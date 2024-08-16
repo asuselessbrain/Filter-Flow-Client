@@ -11,25 +11,27 @@ const Home = () => {
   const [productPerPage, setProductPerPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState("");
 
   const { data: products = [] } = useQuery({
-    queryKey: ["products", currentPage, productPerPage, filter],
+    queryKey: ["products", currentPage, productPerPage, filter, sort],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/products?page=${currentPage}&size=${productPerPage}&filter=${filter}`
+        `http://localhost:3000/products?page=${currentPage}&size=${productPerPage}&filter=${filter}&sort=${sort}`
       );
-      setProduct(data.length)
       return data;
     },
   });
 
   useEffect(() => {
     const productCount = async () => {
-      const { data } = await axios.get(`http://localhost:3000/products-count?filter=${filter}`);
+      const { data } = await axios.get(
+        `http://localhost:3000/products-count?filter=${filter}`
+      );
       setProduct(data.count);
     };
     productCount();
-  }, []);
+  }, [filter]);
 
   const numberOfPages = Math.ceil(product / productPerPage);
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
@@ -43,7 +45,10 @@ const Home = () => {
       <Searchbar />
       <div>
         <select
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={(e) => {
+            setFilter(e.target.value);
+            setCurrentPage(1);
+          }}
           value={filter}
           name="category"
           id="category"
@@ -60,6 +65,19 @@ const Home = () => {
           <option value="Outdoor">Outdoor</option>
           <option value="Personal Care">Personal Care</option>
           <option value="Wearables">Wearables</option>
+        </select>
+      </div>
+      <div>
+        <select
+        onChange={(e) => {
+          setSort(e.target.value);
+          setCurrentPage(1);
+        }}
+        value={sort}
+        name="sort" id="sort" className="border p-4 rounded-md">
+          <option value="">Sort By Price</option>
+          <option value="asc">Low to High</option>
+          <option value="dsc">High to Low</option>
         </select>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
