@@ -12,13 +12,15 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
+  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
   // const [sortByDate, setSortByDate] = useState("");
 
   const { data: products = [] } = useQuery({
-    queryKey: ["products", currentPage, productPerPage, filter, sort],
+    queryKey: ["products", currentPage, productPerPage, filter, sort, search],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/products?page=${currentPage}&size=${productPerPage}&filter=${filter}&sort=${sort}`
+        `http://localhost:3000/products?page=${currentPage}&size=${productPerPage}&filter=${filter}&sort=${sort}&search=${search}`
       );
       return data;
     },
@@ -27,12 +29,12 @@ const Home = () => {
   useEffect(() => {
     const productCount = async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/products-count?filter=${filter}`
+        `http://localhost:3000/products-count?filter=${filter}&search=${search}`
       );
       setProduct(data.count);
     };
     productCount();
-  }, [filter]);
+  }, [filter, search]);
 
   const numberOfPages = Math.ceil(product / productPerPage);
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
@@ -44,11 +46,22 @@ const Home = () => {
   const handleReset = () => {
     setSort("");
     setFilter("");
+    setSearch("");
+    setSearchText("");
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(searchText);
   };
 
   return (
     <div className="max-w-[1440px] mx-auto">
-      <Searchbar />
+      <Searchbar
+        handleSearch={handleSearch}
+        setSearchText={setSearchText}
+        searchText={searchText}
+      />
       <div>
         <select
           onChange={(e) => {
@@ -103,7 +116,9 @@ const Home = () => {
         </select>
       </div> */}
 
-      <button onClick={handleReset} className="btn">Reset</button>
+      <button onClick={handleReset} className="btn">
+        Reset
+      </button>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
           <Card key={product._id} product={product} />
