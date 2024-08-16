@@ -14,13 +14,27 @@ const Home = () => {
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
   const [searchText, setSearchText] = useState("");
-  // const [sortByDate, setSortByDate] = useState("");
+  const [sortByDate, setSortByDate] = useState("");
+  const [minPrice, setMinPrice] = useState(""); // Added state for minimum price
+  const [maxPrice, setMaxPrice] = useState("");
+  const [brand, setBrand] = useState(""); 
 
   const { data: products = [] } = useQuery({
-    queryKey: ["products", currentPage, productPerPage, filter, sort, search],
+    queryKey: [
+      "products",
+      currentPage,
+      productPerPage,
+      filter,
+      sort,
+      search,
+      sortByDate,
+      minPrice,
+      maxPrice,
+      brand,
+    ],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/products?page=${currentPage}&size=${productPerPage}&filter=${filter}&sort=${sort}&search=${search}`
+        `http://localhost:3000/products?page=${currentPage}&size=${productPerPage}&filter=${filter}&sort=${sort}&search=${search}&sortByDate=${sortByDate}&minPrice=${minPrice}&maxPrice=${maxPrice}&brand=${brand}`
       );
       return data;
     },
@@ -29,12 +43,12 @@ const Home = () => {
   useEffect(() => {
     const productCount = async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/products-count?filter=${filter}&search=${search}`
+        `http://localhost:3000/products-count?filter=${filter}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}&brand=${brand}`
       );
       setProduct(data.count);
     };
     productCount();
-  }, [filter, search]);
+  }, [filter, search, minPrice, maxPrice, brand]);
 
   const numberOfPages = Math.ceil(product / productPerPage);
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
@@ -48,6 +62,10 @@ const Home = () => {
     setFilter("");
     setSearch("");
     setSearchText("");
+    setSortByDate("");
+    setMinPrice(""); 
+    setMaxPrice(""); 
+    setBrand("")
   };
 
   const handleSearch = (e) => {
@@ -57,68 +75,115 @@ const Home = () => {
 
   return (
     <div className="max-w-[1440px] mx-auto">
+      
+      <div className="flex justify-between overflow-x-auto gap-6 items-center m-3">
+        <div className="flex-1">
+          <select
+            onChange={(e) => {
+              setFilter(e.target.value);
+              setCurrentPage(1);
+            }}
+            value={filter}
+            name="category"
+            id="category"
+            className="border p-4 rounded-lg"
+          >
+            <option value="">Filter By Category</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Home Appliances">Home Appliances</option>
+            <option value="Home Automation">Home Automation</option>
+            <option value="Kitchen Appliances">Kitchen Appliances</option>
+            <option value="Outdoor">Outdoor</option>
+            <option value="Personal Care">Personal Care</option>
+            <option value="Wearables">Wearables</option>
+          </select>
+        </div>
+        <div className="flex-1">
+        <select
+          onChange={(e) => {
+            setBrand(e.target.value);
+            setCurrentPage(1);
+          }}
+          value={brand}
+          name="brand"
+          id="brand"
+          className="border p-4 rounded-md"
+        >
+          <option value="">Filter By Brand</option>
+          <option value="Brand A">Brand A</option>
+          <option value="Brand B">Brand B</option>
+          <option value="Brand C">Brand C</option>
+        </select>
+      </div>
+        <div className="flex-1">
+          <select
+            onChange={(e) => {
+              setSort(e.target.value);
+              setCurrentPage(1);
+            }}
+            value={sort}
+            name="sort"
+            id="sort"
+            className="border p-4 rounded-md"
+          >
+            <option value="">Sort By Price</option>
+            <option value="asc">Low to High</option>
+            <option value="dsc">High to Low</option>
+          </select>
+        </div>
+        <div className="flex-1">
+          <select
+            onChange={(e) => {
+              setSortByDate(e.target.value);
+              setCurrentPage(1);
+            }}
+            value={sortByDate}
+            name="sortByDate"
+            id="sortByDate"
+            className="border p-4 rounded-md"
+          >
+            <option value="">Sort By Date</option>
+            <option value="dsc">Newest First</option>
+            <option value="asc">Oldest First</option>
+          </select>
+        </div>
+        <div className="flex-1">
+          <input
+            type="number"
+            placeholder="Min Price"
+            value={minPrice}
+            onChange={(e) => {
+              setMinPrice(e.target.value);
+              setCurrentPage(1);
+            }}
+            className="border p-4 rounded-md"
+          />
+        </div>
+        <div className="flex-1">
+          <input
+            type="number"
+            placeholder="Max Price"
+            value={maxPrice}
+            onChange={(e) => {
+              setMaxPrice(e.target.value);
+              setCurrentPage(1);
+            }}
+            className="border p-4 rounded-md"
+          />
+        </div>
+
+        <button onClick={handleReset} className="btn bg-pink-600 hover:bg-pink-700 text-white flex-1">
+          Reset
+        </button>
+      </div>
       <Searchbar
         handleSearch={handleSearch}
         setSearchText={setSearchText}
         searchText={searchText}
       />
-      <div>
-        <select
-          onChange={(e) => {
-            setFilter(e.target.value);
-            setCurrentPage(1);
-          }}
-          value={filter}
-          name="category"
-          id="category"
-          className="border p-4 rounded-lg"
-        >
-          <option value="">Filter By Category</option>
-          <option value="Accessories">Accessories</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Fitness">Fitness</option>
-          <option value="Furniture">Furniture</option>
-          <option value="Home Appliances">Home Appliances</option>
-          <option value="Home Automation">Home Automation</option>
-          <option value="Kitchen Appliances">Kitchen Appliances</option>
-          <option value="Outdoor">Outdoor</option>
-          <option value="Personal Care">Personal Care</option>
-          <option value="Wearables">Wearables</option>
-        </select>
-      </div>
-      <div>
-        <select
-          onChange={(e) => {
-            setSort(e.target.value);
-            setCurrentPage(1);
-          }}
-          value={sort}
-          name="sort"
-          id="sort"
-          className="border p-4 rounded-md"
-        >
-          <option value="">Sort By Price</option>
-          <option value="asc">Low to High</option>
-          <option value="dsc">High to Low</option>
-        </select>
-      </div>
-      {/* <div>
-        <select
-        onChange={(e) => {
-          setSortByDate(e.target.value);
-          setCurrentPage(1);
-        }}
-        value={sortByDate}
-        name="sortByDate" id="sortByDate" className="border p-4 rounded-md">
-          <option value="">Sort By Deadline</option>
-          <option value="dsc">Newest First</option>
-          <option value="asc">Oldest First</option>
-        </select>
-      </div> */}
-
-      <button onClick={handleReset} className="btn">
-        Reset
-      </button>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
           <Card key={product._id} product={product} />
