@@ -1,38 +1,74 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebaseConfig/firebase.config";
-import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  onAuthStateChanged,
+  signOut,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
+  const provider = new GoogleAuthProvider();
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState();
 
-    const provider = new GoogleAuthProvider();
+  // google signIn
+  const googleSignUp = () => {
+    setLoading(true);
+    return signInWithPopup(auth, provider);
+  };
+
+  // email and password signIn
+  const signUpWithEmail = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // update user profile
+
+  const updateUserProfile = (name, photoUrl) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoUrl,
+    });
+  };
 
 
-// google signIn
-    const googleSignUp = () => {
-        return signInWithPopup(auth, provider)
-    }
+//   login in with email 
+const signInWithEmail = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+}
+  //  logout user
 
-    // email and password signIn
-    const signUpWithEmail = (email, password) =>{
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
+  const logOut = () => {
+    return signOut(auth);
+  };
 
-    // update user profile
+  // manage user
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log(user);
+      }
+      setLoading(false);
+    });
 
-    const updateUserProfile = (name, photoUrl) => {
-        return updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photoUrl
-          })
-    }
-
-    // manage user
-
+    return () => unSubscribe();
+  }, []);
 
   const value = {
     googleSignUp,
     signUpWithEmail,
     updateUserProfile,
+    user,
+    signInWithEmail,
+    logOut
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
