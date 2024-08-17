@@ -14,6 +14,7 @@ import SortByPrice from "../../components/SortByPrice";
 import SortByDate from "../../components/SortByDate";
 import MinPrice from "../../components/MinPrice";
 import MaxPrice from "../../components/MaxPrice";
+import HandleResetBtn from "../../components/HandleResetBtn";
 
 const Home = () => {
   const { user, logOut } = useAuth();
@@ -82,27 +83,45 @@ const Home = () => {
     e.preventDefault();
     setSearch(searchText);
   };
-  if(product === 0 ) return <NoProductFound />
-  
+  if (product === 0) return <NoProductFound />;
 
   return (
     <div className="max-w-[1440px] mx-auto">
       <Navbar />
 
       <div className="flex justify-between overflow-x-auto gap-4 items-center m-3">
-        <FilterByCategory filter={filter} setCurrentPage={setCurrentPage} setFilter={setFilter} />
-        <FilterByBrand brand={brand} setCurrentPage={setCurrentPage} setBrand={setBrand} />
-        <SortByPrice sort={sort} setCurrentPage={setCurrentPage} setSort={setSort} />
-        <SortByDate sortByDate={sortByDate} setCurrentPage={setCurrentPage} setSortByDate={setSortByDate} />
-        <MinPrice setCurrentPage={setCurrentPage} setMinPrice={setMinPrice} minPrice={minPrice} />
-        <MaxPrice setCurrentPage={setCurrentPage} setMaxPrice={setMaxPrice} maxPrice={maxPrice} />
+        <FilterByCategory
+          filter={filter}
+          setCurrentPage={setCurrentPage}
+          setFilter={setFilter}
+        />
+        <FilterByBrand
+          brand={brand}
+          setCurrentPage={setCurrentPage}
+          setBrand={setBrand}
+        />
+        <SortByPrice
+          sort={sort}
+          setCurrentPage={setCurrentPage}
+          setSort={setSort}
+        />
+        <SortByDate
+          sortByDate={sortByDate}
+          setCurrentPage={setCurrentPage}
+          setSortByDate={setSortByDate}
+        />
+        <MinPrice
+          setCurrentPage={setCurrentPage}
+          setMinPrice={setMinPrice}
+          minPrice={minPrice}
+        />
+        <MaxPrice
+          setCurrentPage={setCurrentPage}
+          setMaxPrice={setMaxPrice}
+          maxPrice={maxPrice}
+        />
 
-        <button
-          onClick={handleReset}
-          className="btn bg-pink-600 hover:bg-pink-700 text-white flex-1"
-        >
-          Reset
-        </button>
+        <HandleResetBtn handleReset={handleReset} />
       </div>
       <Searchbar
         handleSearch={handleSearch}
