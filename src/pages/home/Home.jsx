@@ -12,6 +12,8 @@ import FilterByCategory from "../../components/FilterByCategory";
 import FilterByBrand from "../../components/FilterByBrand";
 import SortByPrice from "../../components/SortByPrice";
 import SortByDate from "../../components/SortByDate";
+import MinPrice from "../../components/MinPrice";
+import MaxPrice from "../../components/MaxPrice";
 
 const Home = () => {
   const { user, logOut } = useAuth();
@@ -81,7 +83,6 @@ const Home = () => {
     setSearch(searchText);
   };
   if(product === 0 ) return <NoProductFound />
-  if(products.length === 0) return <Spinner />
   
 
   return (
@@ -93,30 +94,8 @@ const Home = () => {
         <FilterByBrand brand={brand} setCurrentPage={setCurrentPage} setBrand={setBrand} />
         <SortByPrice sort={sort} setCurrentPage={setCurrentPage} setSort={setSort} />
         <SortByDate sortByDate={sortByDate} setCurrentPage={setCurrentPage} setSortByDate={setSortByDate} />
-        <div className="flex-1">
-          <input
-            type="number"
-            placeholder="Min Price"
-            value={minPrice}
-            onChange={(e) => {
-              setMinPrice(e.target.value);
-              setCurrentPage(1);
-            }}
-            className="border p-4 rounded-md"
-          />
-        </div>
-        <div className="flex-1">
-          <input
-            type="number"
-            placeholder="Max Price"
-            value={maxPrice}
-            onChange={(e) => {
-              setMaxPrice(e.target.value);
-              setCurrentPage(1);
-            }}
-            className="border p-4 rounded-md"
-          />
-        </div>
+        <MinPrice setCurrentPage={setCurrentPage} setMinPrice={setMinPrice} minPrice={minPrice} />
+        <MaxPrice setCurrentPage={setCurrentPage} setMaxPrice={setMaxPrice} maxPrice={maxPrice} />
 
         <button
           onClick={handleReset}
