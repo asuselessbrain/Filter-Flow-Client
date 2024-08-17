@@ -10,6 +10,7 @@ import Footer from "../../components/Footer";
 import NoProductFound from "../../components/NoProductFound";
 import FilterByCategory from "../../components/FilterByCategory";
 import FilterByBrand from "../../components/FilterByBrand";
+import SortByPrice from "../../components/SortByPrice";
 
 const Home = () => {
   const { user, logOut } = useAuth();
@@ -89,22 +90,7 @@ const Home = () => {
       <div className="flex justify-between overflow-x-auto gap-4 items-center m-3">
         <FilterByCategory filter={filter} setCurrentPage={setCurrentPage} setFilter={setFilter} />
         <FilterByBrand brand={brand} setCurrentPage={setCurrentPage} setBrand={setBrand} />
-        <div className="flex-1">
-          <select
-            onChange={(e) => {
-              setSort(e.target.value);
-              setCurrentPage(1);
-            }}
-            value={sort}
-            name="sort"
-            id="sort"
-            className="border p-4 rounded-md"
-          >
-            <option value="">Sort By Price</option>
-            <option value="asc">Low to High</option>
-            <option value="dsc">High to Low</option>
-          </select>
-        </div>
+        <SortByPrice sort={sort} setCurrentPage={setCurrentPage} setSort={setSort} />
         <div className="flex-1">
           <select
             onChange={(e) => {
