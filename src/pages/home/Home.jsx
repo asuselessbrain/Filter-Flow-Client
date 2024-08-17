@@ -9,6 +9,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import Footer from "../../components/Footer";
 import NoProductFound from "../../components/NoProductFound";
 import FilterByCategory from "../../components/FilterByCategory";
+import FilterByBrand from "../../components/FilterByBrand";
 
 const Home = () => {
   const { user, logOut } = useAuth();
@@ -87,23 +88,7 @@ const Home = () => {
 
       <div className="flex justify-between overflow-x-auto gap-4 items-center m-3">
         <FilterByCategory filter={filter} setCurrentPage={setCurrentPage} setFilter={setFilter} />
-        <div className="flex-1">
-          <select
-            onChange={(e) => {
-              setBrand(e.target.value);
-              setCurrentPage(1);
-            }}
-            value={brand}
-            name="brand"
-            id="brand"
-            className="border p-4 rounded-md"
-          >
-            <option value="">Filter By Brand</option>
-            <option value="Brand A">Brand A</option>
-            <option value="Brand B">Brand B</option>
-            <option value="Brand C">Brand C</option>
-          </select>
-        </div>
+        <FilterByBrand brand={brand} setCurrentPage={setCurrentPage} setBrand={setBrand} />
         <div className="flex-1">
           <select
             onChange={(e) => {
