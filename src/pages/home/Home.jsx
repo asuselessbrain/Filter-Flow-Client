@@ -7,6 +7,8 @@ import Searchbar from "../../components/Searchbar";
 import Navbar from "../../components/Navbar";
 import Spinner from "../../components/Spinner/Spinner";
 import Footer from "../../components/Footer";
+import NoProductFound from "../../components/NoProductFound";
+import FilterByCategory from "../../components/FilterByCategory";
 
 const Home = () => {
   const { user, logOut } = useAuth();
@@ -37,7 +39,7 @@ const Home = () => {
     ],
     queryFn: async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/products?page=${currentPage}&size=${productPerPage}&filter=${filter}&sort=${sort}&search=${search}&sortByDate=${sortByDate}&minPrice=${minPrice}&maxPrice=${maxPrice}&brand=${brand}`
+        `https://filter-flow-server-rho.vercel.app/products?page=${currentPage}&size=${productPerPage}&filter=${filter}&sort=${sort}&search=${search}&sortByDate=${sortByDate}&minPrice=${minPrice}&maxPrice=${maxPrice}&brand=${brand}`
       );
       return data;
     },
@@ -46,7 +48,7 @@ const Home = () => {
   useEffect(() => {
     const productCount = async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/products-count?filter=${filter}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}&brand=${brand}`
+        `https://filter-flow-server-rho.vercel.app/products-count?filter=${filter}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}&brand=${brand}`
       );
       setProduct(data.count);
     };
@@ -75,36 +77,16 @@ const Home = () => {
     e.preventDefault();
     setSearch(searchText);
   };
+  if(product === 0 ) return <NoProductFound />
+  if(products.length === 0) return <Spinner />
+  
 
   return (
     <div className="max-w-[1440px] mx-auto">
       <Navbar />
 
-      <div className="flex justify-between overflow-x-auto gap-6 items-center m-3">
-        <div className="flex-1">
-          <select
-            onChange={(e) => {
-              setFilter(e.target.value);
-              setCurrentPage(1);
-            }}
-            value={filter}
-            name="category"
-            id="category"
-            className="border p-4 rounded-lg"
-          >
-            <option value="">Filter By Category</option>
-            <option value="Accessories">Accessories</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Fitness">Fitness</option>
-            <option value="Furniture">Furniture</option>
-            <option value="Home Appliances">Home Appliances</option>
-            <option value="Home Automation">Home Automation</option>
-            <option value="Kitchen Appliances">Kitchen Appliances</option>
-            <option value="Outdoor">Outdoor</option>
-            <option value="Personal Care">Personal Care</option>
-            <option value="Wearables">Wearables</option>
-          </select>
-        </div>
+      <div className="flex justify-between overflow-x-auto gap-4 items-center m-3">
+        <FilterByCategory filter={filter} setCurrentPage={setCurrentPage} setFilter={setFilter} />
         <div className="flex-1">
           <select
             onChange={(e) => {
