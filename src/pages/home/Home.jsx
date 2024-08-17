@@ -11,6 +11,7 @@ import NoProductFound from "../../components/NoProductFound";
 import FilterByCategory from "../../components/FilterByCategory";
 import FilterByBrand from "../../components/FilterByBrand";
 import SortByPrice from "../../components/SortByPrice";
+import SortByDate from "../../components/SortByDate";
 
 const Home = () => {
   const { user, logOut } = useAuth();
@@ -91,22 +92,7 @@ const Home = () => {
         <FilterByCategory filter={filter} setCurrentPage={setCurrentPage} setFilter={setFilter} />
         <FilterByBrand brand={brand} setCurrentPage={setCurrentPage} setBrand={setBrand} />
         <SortByPrice sort={sort} setCurrentPage={setCurrentPage} setSort={setSort} />
-        <div className="flex-1">
-          <select
-            onChange={(e) => {
-              setSortByDate(e.target.value);
-              setCurrentPage(1);
-            }}
-            value={sortByDate}
-            name="sortByDate"
-            id="sortByDate"
-            className="border p-4 rounded-md"
-          >
-            <option value="">Sort By Date</option>
-            <option value="dsc">Newest First</option>
-            <option value="asc">Oldest First</option>
-          </select>
-        </div>
+        <SortByDate sortByDate={sortByDate} setCurrentPage={setCurrentPage} setSortByDate={setSortByDate} />
         <div className="flex-1">
           <input
             type="number"
